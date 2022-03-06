@@ -1,0 +1,26 @@
+﻿body {
+    background-image: url('../WebImage/back.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+label{
+    font-size:larger;
+    color:black;
+    font-weight:800;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-link{
+    color:red;
+    font-size:medium;
+    font-weight:600;
+}
+
+a{
+    text-decoration:none;
+    color:white;
+}

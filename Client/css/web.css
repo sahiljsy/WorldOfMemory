@@ -1,0 +1,15 @@
+﻿body {
+    background-image: url('../WebImage/bg2.jpg');
+/*    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment:fixed;*/
+}
+
+a{
+    text-decoration:none;
+}
+i{
+    font-size:2rem;
+    margin-right:25px;
+    color:black;
+}
