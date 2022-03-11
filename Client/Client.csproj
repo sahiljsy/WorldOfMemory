@@ -92,6 +92,7 @@
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\popper.min.js" />
+    <Content Include="css\Home.css" />
     <Content Include="css\login.css" />
     <Content Include="css\web.css" />
     <Content Include="fontawsome\css\all.css" />
