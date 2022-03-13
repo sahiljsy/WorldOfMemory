@@ -4,9 +4,9 @@
     <link href="css/Home.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row mx-auto mt-5">
+    <div class="row mt-5" style="margin-left:70px; margin-right:50px;">
         <div class="col-9">
-            <%-- <asp:Repeater ID="Repeater1" runat="server">
+             <%--<asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <table>
                         <tbody>
@@ -50,7 +50,6 @@
                     <span class="username">Username</span>
                     <button runat="server" style="float: right; margin-top: 10px;" class="btn btn-mini">
                         <i class="fa-solid fa-thumbs-up"></i>
-
                     </button>
                 </div>
 
@@ -83,22 +82,22 @@
                 <div class="mt-4">
                     <h5 style="color: red;">Suggestions for you</h5>
                 </div>
-                <%--<asp:Repeater ID="Repeater2" runat="server">
+                <asp:Repeater ID="Repeater2" runat="server">
                     <ItemTemplate>
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="row mt-2">
+                                    <div class="row mt-3">
 
-                                        <div class="col-2">
-                                            <img src="WebImage/back.jpg" class="account-img" />
-
-                                        </div>
-                                        <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                                            <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                                        </div>
                                         <div class="col-4">
-                                            <span style="color: dodgerblue;">Follow</span>
+                                            <asp:Image ID="profile_photo" class="account-img" runat="server" ImageUrl='<%#Eval("profile_pic")%>'/>
+                                        </div>
+                                        <div class="col-5 overflow-hidden p-2" style="text-overflow: ellipsis;">
+                                            <asp:Label ID="user_name" runat="server" Text='<%#Eval("username")%>' style="color: white; "></asp:Label>
+                                           
+                                        </div>
+                                        <div class="col-3 p-2">
+                                            <asp:HyperLink ID="follow_act" style="color: dodgerblue;" runat="server" NavigateUrl='<%#Eval("username", "AddFriend.aspx?username={0}" )%>'>Follow</asp:HyperLink>
                                         </div>
 
                                     </div>
@@ -107,64 +106,9 @@
                         </tbody>
 
                     </ItemTemplate>
-                </asp:Repeater>--%>
+                </asp:Repeater>
 
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
+               
             </div>
         </div>
 

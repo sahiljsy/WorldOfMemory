@@ -19,13 +19,23 @@ namespace Client
             }
             else
             {
-                UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
-                RequestUSer request = new RequestUSer();
-                User u = new User();
-                u.username = user.Value;
-                request.user = u;
-                UserMessage response = client.GetUser(request);
-                myusername.Text = response.user.username;
+                try
+                {
+                    UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
+                    RequestUSer request = new RequestUSer();
+                    User u = new User();
+                    u.username = user.Value;
+                    request.user = u;
+                    UserMessage response = client.GetUser(request);
+                    myusername.Text = response.user.username;
+                    Repeater2.DataSource = client.GetSuggestedUser(user.Value);
+                    Repeater2.DataBind();
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error.Message);
+                }
+                
             }
         }
     }

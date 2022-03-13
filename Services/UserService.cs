@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.ServiceModel.Web;
 using System.Net;
+using System.Data;
 
 namespace Services
 {
@@ -18,7 +19,7 @@ namespace Services
             UserMessage msg = new UserMessage();
             try
             {
-                Console.WriteLine("Here.........."+ request.user.username + "  "+ request.user.password);
+                Console.WriteLine("Here.........." + request.user.username + "  " + request.user.password);
 
                 User authenticated_user = new User();
                 authenticated_user = db.Users.Where(u => u.username == request.user.username).FirstOrDefault<User>();
@@ -36,14 +37,15 @@ namespace Services
                 msg.Error = "Username/Password didn't match!!";
                 Console.WriteLine("Here");
                 return msg;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 msg.Error = e.Message;
                 msg.StatusCode = 500;
                 Console.WriteLine(e.Message);
                 return msg;
             }
-            
+
         }
 
         UserMessage IUser.register(RequestUSer request)
@@ -53,7 +55,7 @@ namespace Services
             {
                 User new_user = new User();
                 var cechk_user = db.Users.Where(u => u.username == request.user.username).FirstOrDefault<User>();
-                if(cechk_user == null)
+                if (cechk_user == null)
                 {
                     Console.WriteLine("Username is available");
                     new_user.username = request.user.username;
@@ -72,7 +74,7 @@ namespace Services
                 msg.user = new_user;
                 return msg;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 msg.Error = e.Message;
                 msg.StatusCode = 500;
@@ -112,5 +114,162 @@ namespace Services
                 return msg;
             }
         }
+
+        IEnumerable<User> IUser.GetSuggestedUser(string username)
+        {
+            try
+            {
+                IEnumerable<User> Users_ = db.Users.Where(u => u.username != username).ToList();
+                IEnumerable<Friend> followed = db.Friends.Where(f => (f.username == username)).ToList();
+                foreach (var u in Users_)
+                {
+                    foreach (var f in followed)
+                    {
+                        if(u.username == f.friend_name)
+                        {
+                            Users_ = Users_.Where(user => user.username != u.username);
+                            break;
+                        }
+                    }
+                }
+                return Users_.Take(10);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        public UserMessage UpdateUser(RequestUSer request)
+        {
+            UserMessage msg = new UserMessage();
+            try
+            {
+                User new_user = new User();
+                var cechk_user = db.Users.Where(u => u.username == request.user.username).FirstOrDefault<User>();
+                if (cechk_user != null)
+                {
+                    Console.WriteLine("User Found");
+                    cechk_user.username = request.user.username;
+                    cechk_user.name = request.user.name;
+                    cechk_user.email = request.user.email;
+                    cechk_user.profile_pic = request.user.profile_pic;
+                    db.SaveChanges();
+                    msg.StatusCode = 200;
+                    msg.user = cechk_user;
+                    return msg;
+                }
+                Console.WriteLine("User not Found");
+                msg.Error = "User Doesn't exists!!";
+                msg.StatusCode = 400;
+                msg.user = new_user;
+                return msg;
+            }
+            catch (Exception e)
+            {
+                msg.Error = e.Message;
+                msg.StatusCode = 500;
+                return msg;
+            }
+        }
+
+        public string AddFreind(string username, string friendname)
+        {
+            try
+            {
+                var user = db.Users.Where(u => u.username == username).FirstOrDefault();
+                if (user != null)
+                {
+                    var friend = db.Users.Where(f => f.username == friendname).FirstOrDefault();
+                    if (friend != null)
+                    {
+                        var check_entry = db.Friends.Where(f => f.username == username && f.friend_name == friendname).FirstOrDefault();
+                        if(check_entry == null)
+                        {
+                            Friend new_entry = new Friend();
+                            new_entry.username = username;
+                            new_entry.friend_name = friendname;
+                            user.freinds = user.freinds + 1;
+                            db.Friends.Add(new_entry);
+                            db.SaveChanges();
+                            return friendname + " added as friend";
+                        }
+                        else
+                        {
+                            return friendname + " already added as friend";
+
+                        }
+                    }
+                    else
+                    {
+                        return "Can't add " + friendname + " as friend";
+                    }
+                }
+                return "Can't add " + friendname + " as friend";
+            }
+            catch (Exception e)
+            {
+                return "Unable to Add Friend";
+            }
+        }
+
+        public string RemoveFriend(string username, string friendname)
+        {
+            try
+            {
+                var user = db.Users.Where(u => u.username == username).FirstOrDefault();
+                if (user != null)
+                {
+                    var friend = db.Users.Where(f => f.username == friendname).FirstOrDefault();
+                    if (friend != null)
+                    {
+                        var check_entry = db.Friends.Where(f => f.username == username && f.friend_name == friendname).FirstOrDefault();
+                        if (check_entry != null)
+                        {
+                            db.Friends.Remove(check_entry);
+                            user.freinds = user.freinds - 1;
+                            db.SaveChanges();
+                            return friendname + " remove from friend list";
+                        }
+                        else
+                        {
+                            return friendname + " is not your friend";
+
+                        }
+                    }
+                    else
+                    {
+                        return "Can't remove " + friendname + " as friend";
+                    }
+                }
+                return "Can't remove " + friendname + " as friend";
+            }
+            catch (Exception e)
+            {
+                return "Unable to Remove Friend";
+            }
+        }
+        public IEnumerable<User> GetFriends(string username)
+        {
+            try
+            {
+                IEnumerable<Friend> friends = db.Friends.Where(f => f.username == username).ToList();
+                IEnumerable<User> friendList = new List<User>();
+                foreach (var f in friends)
+                {
+                    //User u = 
+                    friendList = friendList.Append(db.Users.Where(u => u.username == f.friend_name).FirstOrDefault());
+                }
+                return friendList;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        
     }
 }
