@@ -77,8 +77,8 @@
         <div class="col-3">
             <div class="fixed-col">
                 <div>
-                    <img src="WebImage/back.jpg" class="account-img" />
-                    <span style="color: white;">Username</span>
+                    <img src="Profile_pic/defualt_user.png" class="account-img" />
+                    <asp:Label ID="myusername" runat="server" Text="" style="color: white;"></asp:Label>
                 </div>
                 <div class="mt-4">
                     <h5 style="color: red;">Suggestions for you</h5>

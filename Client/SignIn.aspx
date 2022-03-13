@@ -11,15 +11,16 @@
             <div class="col-6 mx-auto">
                 <div class="card mx-auto my-5" style="width: 90%;">
                     <div class="card-body">
+                            <asp:Label ID="error" runat="server" Text="" style="color:red"></asp:Label>
                         <div class="mb-3">
-                            <label for="email" class="form-label" ><b>Email address</b></label>
-                            <span id="emailError" style="color:red">*</span>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                            <label for="username" class="form-label" ><b>Username</b></label>
+                            <asp:Label ID="usernameError" runat="server" Text="*" style="color:red"></asp:Label>
+                            <asp:TextBox ID="username" runat="server" class="form-control"></asp:TextBox>
                         </div>
                         <div class="mb-2">
                             <label for="password" class="form-label" ><b>Password</b></label>
-                            <span id="passwordError" style="color:red">*</span>
-                            <input type="password" class="form-control" id="password">
+                            <asp:Label ID="passwordError" runat="server" Text="*" style="color:red"></asp:Label>
+                            <asp:TextBox ID="password" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                         </div>
                         <div>
                             <button type="button" class="btn btn-link">Forgot Password?</button>
