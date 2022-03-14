@@ -17,4 +17,18 @@
   </xs:element>
   <xs:element name="Error" nillable="true" type="xs:string" />
   <xs:element name="StatusCode" type="xs:int" />
+  <xs:element name="AddPost">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="pst" nillable="true" type="q3:post" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddPostResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddPostResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

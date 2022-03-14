@@ -19,9 +19,13 @@ namespace Services
         UserMessage register(RequestUSer msg);
         [OperationContract]
         UserMessage GetUser(RequestUSer msg);
+
+        [OperationContract]
+        string AddPost(post pst);
         //[OperationContract]
         //DataSet GetSuggestedUser();
     }
+
     [MessageContract]
     public class UserMessage
     {

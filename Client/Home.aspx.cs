@@ -21,7 +21,7 @@ namespace Client
             {
                 UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
                 RequestUSer request = new RequestUSer();
-                User u = new User();
+                Services.User u = new Services.User();
                 u.username = user.Value;
                 request.user = u;
                 UserMessage response = client.GetUser(request);

@@ -11,18 +11,12 @@ namespace Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]
+    
     public partial class post
     {
-        [DataMember]
         public int Id { get; set; }
-        [DataMember]
-        public string username { get; set; }
-        [DataMember]
-        public int likes { get; set; }
-        [DataMember]
         public string post_path { get; set; }
+        public string username { get; set; }
+        public int likes { get; set; }
     }
 }

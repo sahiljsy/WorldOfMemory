@@ -25,8 +25,8 @@ namespace Services
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<User> Users { get; set; }
         public DbSet<Friend> Friends { get; set; }
         public DbSet<post> posts { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -29,12 +29,12 @@ namespace Client
             }
             else
             {
-                User user = new User();
+                Services.User user = new Services.User();
                 user.username = username.Text;
                 user.password = password.Text;
                 user.email = email.Text;
                 request.user = user;
-                UserMessage response = client.register(request);
+                UserServiceReference.UserMessage response = client.register(request);
                 if (response.StatusCode == 200)
                 {
                     Response.Redirect("SignIn.aspx");

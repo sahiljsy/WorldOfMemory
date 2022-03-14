@@ -30,7 +30,7 @@ namespace Client
                 string user_name = username.Text;
                 string pass = password.Text;
                 Console.WriteLine(user_name, pass);
-                User user = new User();
+                Services.User user = new Services.User();
                 user.username = user_name;
                 user.password = pass;
                 request.user = user;

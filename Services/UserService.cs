@@ -13,6 +13,30 @@ namespace Services
     public class UserService : IUser
     {
         worldofmemoryEntities db = new worldofmemoryEntities();
+
+        string IUser.AddPost(post pst)
+        {
+            try
+            { 
+                post p = new post();
+                p.username = pst.username;
+                p.post_path = pst.post_path;
+                Console.WriteLine("INN");
+                Console.WriteLine(p.username);
+                Console.WriteLine(p.post_path);
+                db.posts.Add(p);
+                db.SaveChanges();
+                Console.WriteLine("success");
+                string message = " has been Added Successfully.";
+                return message;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return e.Message;
+            }
+
+        }
         UserMessage IUser.login(RequestUSer request)
         {
             UserMessage msg = new UserMessage();
@@ -94,7 +118,7 @@ namespace Services
                     user.name = check_user.name;
                     user.email = check_user.email;
                     user.profile_pic = check_user.profile_pic;
-                    user.freinds = check_user.freinds;
+                    user.friends = check_user.friends;
                     msg.StatusCode = 200;
                     msg.user = user;
                     return msg;

@@ -44,6 +44,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -89,9 +91,6 @@
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\popper.min.js" />
-    <Content Include="Connected Services\UserServiceReference\Client.UserServiceReference.User.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Connected Services\UserServiceReference\Client.UserServiceReference.UserMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -1893,6 +1892,7 @@
     <Content Include="SignIn.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Web.config" />
+    <Content Include="AddPost.aspx" />
     <Content Include="WebImage\back.jpg" />
     <Content Include="WebImage\bg1.jpg" />
     <Content Include="WebImage\bg2.jpg" />
@@ -1935,6 +1935,13 @@
     </Compile>
     <Compile Include="Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="AddPost.aspx.cs">
+      <DependentUpon>AddPost.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddPost.aspx.designer.cs">
+      <DependentUpon>AddPost.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1995,6 +2002,7 @@
     </None>
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
+    <Content Include="Properties\DataSources\Services.User.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2003,6 +2011,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="posts\" />
     <Folder Include="Profile_pic\" />
   </ItemGroup>
   <ItemGroup>
@@ -2010,6 +2019,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\UserServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{8B6F069E-0FF7-4D68-9518-4218208CEBBA}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

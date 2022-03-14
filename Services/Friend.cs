@@ -11,16 +11,11 @@ namespace Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]
+    
     public partial class Friend
     {
-        [DataMember]
         public int Id { get; set; }
-        [DataMember]
         public string username { get; set; }
-        [DataMember]
         public string friend_name { get; set; }
     }
 }

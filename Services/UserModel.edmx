@@ -32,7 +32,7 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="profile_pic" Type="nvarchar" MaxLength="100" />
-          <Property Name="freinds" Type="int" Nullable="false" />
+          <Property Name="friends" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="worldofmemoryModelStoreContainer">
           <EntitySet Name="Friends" EntityType="Self.Friends" Schema="dbo" store:Type="Tables" />
@@ -43,6 +43,23 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="worldofmemoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Friend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="friend_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="post_path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="likes" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -53,36 +70,38 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="profile_pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="freinds" Type="Int32" Nullable="false" />
+          <Property Name="friends" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityContainer Name="worldofmemoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Friends" EntityType="Self.Friend" />
+          <EntitySet Name="posts" EntityType="Self.post" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Friends" EntityType="worldofmemoryModel.Friend" />
-          <EntitySet Name="posts" EntityType="worldofmemoryModel.post" />
         </EntityContainer>
-        <EntityType Name="Friend">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="friend_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="post">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="likes" Type="Int32" Nullable="false" />
-          <Property Name="post_path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="worldofmemoryModelStoreContainer" CdmEntityContainer="worldofmemoryEntities">
+          <EntitySetMapping Name="Friends">
+            <EntityTypeMapping TypeName="worldofmemoryModel.Friend">
+              <MappingFragment StoreEntitySet="Friends">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="friend_name" ColumnName="friend_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="posts">
+            <EntityTypeMapping TypeName="worldofmemoryModel.post">
+              <MappingFragment StoreEntitySet="posts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="post_path" ColumnName="post_path" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="worldofmemoryModel.User">
               <MappingFragment StoreEntitySet="User">
@@ -92,26 +111,7 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
-                <ScalarProperty Name="freinds" ColumnName="freinds" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Friends">
-            <EntityTypeMapping TypeName="worldofmemoryModel.Friend">
-              <MappingFragment StoreEntitySet="Friends">
-                <ScalarProperty Name="friend_name" ColumnName="friend_name" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="posts">
-            <EntityTypeMapping TypeName="worldofmemoryModel.post">
-              <MappingFragment StoreEntitySet="posts">
-                <ScalarProperty Name="post_path" ColumnName="post_path" />
-                <ScalarProperty Name="likes" ColumnName="likes" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="friends" ColumnName="friends" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
