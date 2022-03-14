@@ -7,20 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace Client
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class Logout : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             HttpCookie user = Request.Cookies["username"];
-            if (user == null)
+            if (user != null)
             {
-                Logout.Visible = false;
-                SignIn.Visible = true;
-            }
-            else
-            {
-                SignIn.Visible = false;
-                Logout.Visible = true;
+                Response.Cookies["username"].Expires = DateTime.Now.AddDays(-1);
+                Response.Redirect("SignIn.aspx");
             }
         }
     }

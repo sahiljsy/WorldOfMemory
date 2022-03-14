@@ -39,19 +39,22 @@
                             <i class="fa-solid fa-heart"></i>
                         </li>
                         <li class="nav-item ">
-                            <i class="fa-solid fa-user"></i>
+                            <a href="UserProfile.aspx">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
                         </li>
                         <li class="nav-item ">
-                            <a href="SignIn.aspx">
-                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            </a>
+                            <asp:HyperLink ID="SignIn" runat="server" NavigateUrl="~/SignIn.aspx"><i class="fa-solid fa-arrow-right-to-bracket"></i></asp:HyperLink>
+                        </li>
+                        <li class="nav-item ">
+                            <asp:HyperLink ID="Logout" runat="server" NavigateUrl="~/Logout.aspx"><i class="fa-solid fa-right-from-bracket"></i></asp:HyperLink>
                         </li>
                     </ul>
                 </div>
-               
+
             </div>
         </nav>
-        <div class="container mt-5">
+        <div class="container-fluid mt-5">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

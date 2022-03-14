@@ -19,9 +19,22 @@ namespace Services
         UserMessage register(RequestUSer msg);
         [OperationContract]
         UserMessage GetUser(RequestUSer msg);
+        [OperationContract]
+        IEnumerable<User> GetSuggestedUser(string username);
+        [OperationContract]
+        UserMessage UpdateUser(RequestUSer msg);
+        [OperationContract]
+        string AddFreind(string username, string friendname);
+        [OperationContract]
+        string RemoveFriend(string username, string friendname);
 
         [OperationContract]
+        IEnumerable<User> GetFriends(string username);
+        [OperationContract]
+        string DeleteAccount(string username);
+        [OperationContract]
         string AddPost(post pst);
+
         //[OperationContract]
         //DataSet GetSuggestedUser();
     }

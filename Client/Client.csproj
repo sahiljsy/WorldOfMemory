@@ -87,6 +87,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddFriend.aspx" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
@@ -103,7 +104,9 @@
     </None>
     <Content Include="css\Home.css" />
     <Content Include="css\login.css" />
+    <Content Include="css\userProfile.css" />
     <Content Include="css\web.css" />
+    <Content Include="DeleteAccount.aspx" />
     <Content Include="fontawsome\css\all.css" />
     <Content Include="fontawsome\css\all.min.css" />
     <Content Include="fontawsome\css\brands.css" />
@@ -1889,8 +1892,11 @@
     <Content Include="fontawsome\svgs\solid\yin-yang.svg" />
     <Content Include="fontawsome\svgs\solid\z.svg" />
     <Content Include="Home.aspx" />
+    <Content Include="Logout.aspx" />
+    <Content Include="RemoveFriend.aspx" />
     <Content Include="SignIn.aspx" />
     <Content Include="SignUp.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
     <Content Include="AddPost.aspx" />
     <Content Include="WebImage\back.jpg" />
@@ -1902,10 +1908,24 @@
     <Content Include="WebImage\memory.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFriend.aspx.cs">
+      <DependentUpon>AddFriend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddFriend.aspx.designer.cs">
+      <DependentUpon>AddFriend.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\UserServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteAccount.aspx.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteAccount.aspx.designer.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -1914,7 +1934,21 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoveFriend.aspx.cs">
+      <DependentUpon>RemoveFriend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RemoveFriend.aspx.designer.cs">
+      <DependentUpon>RemoveFriend.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
