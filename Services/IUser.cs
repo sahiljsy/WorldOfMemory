@@ -30,6 +30,8 @@ namespace Services
 
         [OperationContract]
         IEnumerable<User> GetFriends(string username);
+        [OperationContract]
+        string DeleteAccount(string username);
     }
     [MessageContract]
     public class UserMessage

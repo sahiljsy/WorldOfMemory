@@ -209,6 +209,12 @@ namespace Client.UserServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
         System.Threading.Tasks.Task<Client.UserServiceReference.User[]> GetFriendsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/DeleteAccount", ReplyAction="http://tempuri.org/IUser/DeleteAccountResponse")]
+        string DeleteAccount(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/DeleteAccount", ReplyAction="http://tempuri.org/IUser/DeleteAccountResponse")]
+        System.Threading.Tasks.Task<string> DeleteAccountAsync(string username);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -380,6 +386,14 @@ namespace Client.UserServiceReference {
         
         public System.Threading.Tasks.Task<Client.UserServiceReference.User[]> GetFriendsAsync(string username) {
             return base.Channel.GetFriendsAsync(username);
+        }
+        
+        public string DeleteAccount(string username) {
+            return base.Channel.DeleteAccount(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> DeleteAccountAsync(string username) {
+            return base.Channel.DeleteAccountAsync(username);
         }
     }
 }

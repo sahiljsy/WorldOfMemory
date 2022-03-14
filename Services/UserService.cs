@@ -270,6 +270,37 @@ namespace Services
             }
         }
 
-        
+        public string DeleteAccount(string username)
+        {
+            try
+            {
+                User account = db.Users.Where(u => u.username == username).FirstOrDefault();
+                if(account != null)
+                {
+                    var friends = db.Friends.Where(f => f.username == username || f.friend_name == username).ToList();
+                    var posts = db.posts.Where(p => p.username == username).ToList();
+                    foreach (var f in friends)
+                    {
+                        db.Friends.Remove(f);
+                    }
+                    foreach (var p in posts)
+                    {
+                        db.posts.Remove(p);
+                    }
+                    db.Users.Remove(account);
+                    db.SaveChanges();
+                    return "Account Deleted !";
+                }
+                else
+                {
+                    return "Unable to delete account";
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return "Something Went Wrong";
+            }
+        }
     }
 }

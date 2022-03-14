@@ -88,5 +88,10 @@ namespace Client
                 Console.WriteLine(error.Message);
             }
         }
+
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("DeleteAccount.aspx");
+        }
     }
 }

@@ -19,7 +19,8 @@
                 <div class="mt-5 text-center">
                     <asp:Label ID="displayUsername" runat="server" Text="Username" class="username"></asp:Label>
                     <asp:Label ID="friends" runat="server" Text="Friends: " class="text-muted d-block mb-2"></asp:Label>
-                    <asp:Button ID="Update" runat="server" Text="Upadte" CssClass="btn btn-warning" OnClick="Update_Click" />
+                    <asp:Button ID="Update" runat="server" Text="Upadte" CssClass="btn btn-warning mx-3" OnClick="Update_Click" />
+                    <asp:Button ID="Delete" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="Delete_Click" />
                     <asp:Label ID="status" runat="server" Text="" Style="color: green"></asp:Label>
 
                 </div>

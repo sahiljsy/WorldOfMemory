@@ -91,6 +91,7 @@
     <Content Include="css\login.css" />
     <Content Include="css\userProfile.css" />
     <Content Include="css\web.css" />
+    <Content Include="DeleteAccount.aspx" />
     <Content Include="fontawsome\css\all.css" />
     <Content Include="fontawsome\css\all.min.css" />
     <Content Include="fontawsome\css\brands.css" />
@@ -1902,6 +1903,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteAccount.aspx.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteAccount.aspx.designer.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
