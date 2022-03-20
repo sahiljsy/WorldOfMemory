@@ -36,11 +36,72 @@ namespace Client.UserServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetUser", ReplyAction="http://tempuri.org/IUser/GetUserResponse")]
         System.Threading.Tasks.Task<Client.UserServiceReference.UserMessage> GetUserAsync(Client.UserServiceReference.RequestUSer request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetSuggestedUser", ReplyAction="http://tempuri.org/IUser/GetSuggestedUserResponse")]
+        Services.User[] GetSuggestedUser(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetSuggestedUser", ReplyAction="http://tempuri.org/IUser/GetSuggestedUserResponse")]
+        System.Threading.Tasks.Task<Services.User[]> GetSuggestedUserAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/UpdateUser", ReplyAction="http://tempuri.org/IUser/UpdateUserResponse")]
+        Client.UserServiceReference.UserMessage UpdateUser(Client.UserServiceReference.RequestUSer request);
+        
+        // CODEGEN: Generating message contract since the operation has multiple return values.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/UpdateUser", ReplyAction="http://tempuri.org/IUser/UpdateUserResponse")]
+        System.Threading.Tasks.Task<Client.UserServiceReference.UserMessage> UpdateUserAsync(Client.UserServiceReference.RequestUSer request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/AddFreind", ReplyAction="http://tempuri.org/IUser/AddFreindResponse")]
+        string AddFreind(string username, string friendname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/AddFreind", ReplyAction="http://tempuri.org/IUser/AddFreindResponse")]
+        System.Threading.Tasks.Task<string> AddFreindAsync(string username, string friendname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveFriend", ReplyAction="http://tempuri.org/IUser/RemoveFriendResponse")]
+        string RemoveFriend(string username, string friendname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveFriend", ReplyAction="http://tempuri.org/IUser/RemoveFriendResponse")]
+        System.Threading.Tasks.Task<string> RemoveFriendAsync(string username, string friendname);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
+        Services.User[] GetFriends(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
+        System.Threading.Tasks.Task<Services.User[]> GetFriendsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/DeleteAccount", ReplyAction="http://tempuri.org/IUser/DeleteAccountResponse")]
+        string DeleteAccount(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/DeleteAccount", ReplyAction="http://tempuri.org/IUser/DeleteAccountResponse")]
+        System.Threading.Tasks.Task<string> DeleteAccountAsync(string username);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/AddPost", ReplyAction="http://tempuri.org/IUser/AddPostResponse")]
         string AddPost(Services.post pst);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/AddPost", ReplyAction="http://tempuri.org/IUser/AddPostResponse")]
         System.Threading.Tasks.Task<string> AddPostAsync(Services.post pst);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/DeletePost", ReplyAction="http://tempuri.org/IUser/DeletePostResponse")]
+        string DeletePost(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/DeletePost", ReplyAction="http://tempuri.org/IUser/DeletePostResponse")]
+        System.Threading.Tasks.Task<string> DeletePostAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewPosts", ReplyAction="http://tempuri.org/IUser/ViewPostsResponse")]
+        Services.post[] ViewPosts(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewPosts", ReplyAction="http://tempuri.org/IUser/ViewPostsResponse")]
+        System.Threading.Tasks.Task<Services.post[]> ViewPostsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewMyPosts", ReplyAction="http://tempuri.org/IUser/ViewMyPostsResponse")]
+        Services.post[] ViewMyPosts(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewMyPosts", ReplyAction="http://tempuri.org/IUser/ViewMyPostsResponse")]
+        System.Threading.Tasks.Task<Services.post[]> ViewMyPostsAsync(string username);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/LikePost", ReplyAction="http://tempuri.org/IUser/LikePostResponse")]
+        int LikePost(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/LikePost", ReplyAction="http://tempuri.org/IUser/LikePostResponse")]
+        System.Threading.Tasks.Task<int> LikePostAsync(int id);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -164,12 +225,102 @@ namespace Client.UserServiceReference {
             return base.Channel.GetUserAsync(request);
         }
         
+        public Services.User[] GetSuggestedUser(string username) {
+            return base.Channel.GetSuggestedUser(username);
+        }
+        
+        public System.Threading.Tasks.Task<Services.User[]> GetSuggestedUserAsync(string username) {
+            return base.Channel.GetSuggestedUserAsync(username);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Client.UserServiceReference.UserMessage Client.UserServiceReference.IUser.UpdateUser(Client.UserServiceReference.RequestUSer request) {
+            return base.Channel.UpdateUser(request);
+        }
+        
+        public string UpdateUser(ref Services.User user, out int StatusCode) {
+            Client.UserServiceReference.RequestUSer inValue = new Client.UserServiceReference.RequestUSer();
+            inValue.user = user;
+            Client.UserServiceReference.UserMessage retVal = ((Client.UserServiceReference.IUser)(this)).UpdateUser(inValue);
+            StatusCode = retVal.StatusCode;
+            user = retVal.user;
+            return retVal.Error;
+        }
+        
+        public System.Threading.Tasks.Task<Client.UserServiceReference.UserMessage> UpdateUserAsync(Client.UserServiceReference.RequestUSer request) {
+            return base.Channel.UpdateUserAsync(request);
+        }
+        
+        public string AddFreind(string username, string friendname) {
+            return base.Channel.AddFreind(username, friendname);
+        }
+        
+        public System.Threading.Tasks.Task<string> AddFreindAsync(string username, string friendname) {
+            return base.Channel.AddFreindAsync(username, friendname);
+        }
+        
+        public string RemoveFriend(string username, string friendname) {
+            return base.Channel.RemoveFriend(username, friendname);
+        }
+        
+        public System.Threading.Tasks.Task<string> RemoveFriendAsync(string username, string friendname) {
+            return base.Channel.RemoveFriendAsync(username, friendname);
+        }
+        
+        public Services.User[] GetFriends(string username) {
+            return base.Channel.GetFriends(username);
+        }
+        
+        public System.Threading.Tasks.Task<Services.User[]> GetFriendsAsync(string username) {
+            return base.Channel.GetFriendsAsync(username);
+        }
+        
+        public string DeleteAccount(string username) {
+            return base.Channel.DeleteAccount(username);
+        }
+        
+        public System.Threading.Tasks.Task<string> DeleteAccountAsync(string username) {
+            return base.Channel.DeleteAccountAsync(username);
+        }
+        
         public string AddPost(Services.post pst) {
             return base.Channel.AddPost(pst);
         }
         
         public System.Threading.Tasks.Task<string> AddPostAsync(Services.post pst) {
             return base.Channel.AddPostAsync(pst);
+        }
+        
+        public string DeletePost(int id) {
+            return base.Channel.DeletePost(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> DeletePostAsync(int id) {
+            return base.Channel.DeletePostAsync(id);
+        }
+        
+        public Services.post[] ViewPosts(string username) {
+            return base.Channel.ViewPosts(username);
+        }
+        
+        public System.Threading.Tasks.Task<Services.post[]> ViewPostsAsync(string username) {
+            return base.Channel.ViewPostsAsync(username);
+        }
+        
+        public Services.post[] ViewMyPosts(string username) {
+            return base.Channel.ViewMyPosts(username);
+        }
+        
+        public System.Threading.Tasks.Task<Services.post[]> ViewMyPostsAsync(string username) {
+            return base.Channel.ViewMyPostsAsync(username);
+        }
+        
+        public int LikePost(int id) {
+            return base.Channel.LikePost(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> LikePostAsync(int id) {
+            return base.Channel.LikePostAsync(id);
         }
     }
 }

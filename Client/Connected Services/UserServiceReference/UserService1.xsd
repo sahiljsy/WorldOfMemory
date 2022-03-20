@@ -12,6 +12,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
   <xs:complexType name="post">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
@@ -21,4 +27,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="post" nillable="true" type="tns:post" />
+  <xs:complexType name="ArrayOfpost">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="post" nillable="true" type="tns:post" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfpost" nillable="true" type="tns:ArrayOfpost" />
 </xs:schema>

@@ -1899,6 +1899,7 @@
     <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
     <Content Include="AddPost.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="WebImage\back.jpg" />
     <Content Include="WebImage\bg1.jpg" />
     <Content Include="WebImage\bg2.jpg" />
@@ -1977,6 +1978,13 @@
     <Compile Include="AddPost.aspx.designer.cs">
       <DependentUpon>AddPost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fontawsome\less\brands.less" />
@@ -2037,6 +2045,7 @@
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
     <Content Include="Properties\DataSources\Services.User.datasource" />
+    <Content Include="Properties\DataSources\Services.post.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

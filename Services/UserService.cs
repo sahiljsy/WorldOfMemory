@@ -38,6 +38,92 @@ namespace Services
             }
 
         }
+
+        string IUser.DeletePost(int id)
+        {
+            try
+            {
+                post pst = db.posts.Where(p => (p.Id == id)).FirstOrDefault();
+                string path = pst.post_path;
+                db.posts.Remove(pst);
+                db.SaveChanges();
+                return path;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return e.Message;
+            }
+        }
+
+        List<post> IUser.ViewPosts(string username)
+        {
+            try
+            {
+                List<post> post_list = new List<post>();
+                IEnumerable<Friend> friends = db.Friends.Where(f => (f.username == username) ).ToList();
+                foreach (var f in friends)
+                {
+                   IEnumerable<post> pst = db.posts.Where(p => (p.username == f.friend_name));                   
+                   foreach (var pt in pst)
+                   {
+                        post_list.Add(pt);
+                   }
+                }
+                for (int i = 0, j = post_list.Count - 1; i < j; i++)
+                {
+                    post temp = post_list[j];
+                    post_list.RemoveAt(j);
+                    post_list.Insert(i, temp);
+                }
+                foreach (var pst in post_list)
+                {
+                    Console.WriteLine(pst.username);
+                }
+                return post_list;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        List<post> IUser.ViewMyPosts(string username)
+        {
+            try
+            {
+                List<post> post_list = db.posts.Where(f => (f.username == username)).ToList();            
+                return post_list;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        int IUser.LikePost(int id)
+        {
+            try
+            {
+                post pt = db.posts.Where(p => p.Id == id).FirstOrDefault<post>();
+                if (pt != null)
+                {
+                    Console.WriteLine("Post Found");
+                    pt.likes = pt.likes + 1;
+                    db.SaveChanges();
+                    return pt.likes;
+                }
+                Console.WriteLine("User not Found");
+                return -1;
+            }
+            catch (Exception e)
+            {
+                return -2;
+            }
+        }
+
         UserMessage IUser.login(RequestUSer request)
         {
             UserMessage msg = new UserMessage();
@@ -214,7 +300,7 @@ namespace Services
                             Friend new_entry = new Friend();
                             new_entry.username = username;
                             new_entry.friend_name = friendname;
-                            user.freinds = user.freinds + 1;
+                            user.friends = user.friends + 1;
                             db.Friends.Add(new_entry);
                             db.SaveChanges();
                             return friendname + " added as friend";
@@ -252,7 +338,7 @@ namespace Services
                         if (check_entry != null)
                         {
                             db.Friends.Remove(check_entry);
-                            user.freinds = user.freinds - 1;
+                            user.friends = user.friends - 1;
                             db.SaveChanges();
                             return friendname + " remove from friend list";
                         }
@@ -326,5 +412,6 @@ namespace Services
                 return "Something Went Wrong";
             }
         }
+
     }
 }

@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" Inherits="Client.UserProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Client.WebForm2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/userProfile.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="row">
         <div class="col-3 profile-intro">
             <div class="fixed-col">
@@ -55,49 +54,17 @@
         </div>
         <div class="col-5 post-container">
             <div class="row mt-2">
-                <div class="col-6">
-                    <asp:Image ID="Image1" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <div>
-                        <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                        <asp:Label ID="likes" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                    </div>
-
-                </div>
-                <div class="col-6">
-                    <asp:Image ID="Image2" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label1" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-6">
-                    <asp:Image ID="Image3" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <div>
-                        <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                        <asp:Label ID="Label2" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                    </div>
-
-                </div>
-                <div class="col-6">
-                    <asp:Image ID="Image6" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label5" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-6">
-                    <asp:Image ID="Image4" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <div>
-                        <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                        <asp:Label ID="Label3" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                    </div>
-
-                </div>
-                <div class="col-6">
-                    <asp:Image ID="Image5" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label4" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
+                <asp:Repeater ID="Repeater2" runat="server">
+                    <ItemTemplate>
+                        <div class="col-6">
+                            <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("post_path")%>' class="posts" />
+                            <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
+                            <asp:Label ID="Label1" runat="server" Text='<%#Eval("likes")%>' Style="font-weight: 600"></asp:Label>
+                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/fontawsome/svgs/solid/delete-left.svg" Height="30px" Width="30px" Style="float: right" OnClick="ImageButton1_Click" />
+                            <asp:Label ID="lblId" Text='<%# Eval("Id") %>' runat="server" Visible="False" />
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
         <div class="col-3 friend-list">
@@ -114,12 +81,12 @@
                                         <div class="col-4">
                                             <asp:Image ID="profile_photo" class="account-img" runat="server" ImageUrl='<%#Eval("profile_pic")%>' />
                                         </div>
-                                        <div class="col-5 overflow-hidden pt-3" style="text-overflow: ellipsis;font-family:cursive; font-weight:600">
-                                            <asp:Label ID="user_name" runat="server" Text='<%#Eval("username")%>' ></asp:Label>
+                                        <div class="col-5 overflow-hidden pt-3" style="text-overflow: ellipsis; font-family: cursive; font-weight: 600">
+                                            <asp:Label ID="user_name" runat="server" Text='<%#Eval("username")%>'></asp:Label>
 
                                         </div>
                                         <div class="col-3 pt-3">
-                                            <asp:HyperLink ID="follow_act" Style="color: darkred; font-weight:600" runat="server" NavigateUrl='<%#Eval("username", "RemoveFriend.aspx?username={0}" )%>'>Remove</asp:HyperLink>
+                                            <asp:HyperLink ID="follow_act" Style="color: darkred; font-weight: 600" runat="server" NavigateUrl='<%#Eval("username", "RemoveFriend.aspx?username={0}" )%>'>Remove</asp:HyperLink>
                                         </div>
 
                                     </div>

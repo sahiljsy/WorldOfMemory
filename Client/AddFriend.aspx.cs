@@ -23,12 +23,12 @@ namespace Client
             {
                 UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
                 RequestUSer request = new RequestUSer();
-                User u = new User();
+                Services.User u = new Services.User();
                 u.username = friend;
                 request.user = u;
                 UserMessage response = client.GetUser(request);
                 displayUsername.Text = response.user.username;
-                friends.Text = "Friends: "+ response.user.freinds;
+                friends.Text = "Friends: "+ response.user.friends;
             }
             catch (Exception error)
             {

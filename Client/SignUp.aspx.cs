@@ -31,7 +31,7 @@ namespace Client
                 }
                 else
                 {
-                    User user = new User();
+                    Services.User user = new Services.User();
                     user.username = username.Text;
                     user.password = password.Text;
                     user.email = email.Text;

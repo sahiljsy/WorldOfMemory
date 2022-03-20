@@ -4,85 +4,50 @@
     <link href="css/Home.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="row mt-5" style="margin-left:70px; margin-right:50px;">
+    <div class="row mt-5" style="margin-left: 70px; margin-right: 50px;">
         <div class="col-9">
-            <%-- <asp:Repeater ID="Repeater1" runat="server">
+            <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                     <div class="card mb-5">
                         <div class="card-header">
                             <img src="WebImage/bg1.jpg" class="account-img" />
-                            <span class="username">Hello, <%#Eval("username")%></span>
-                            <button runat="server" style="float: right; margin-top: 10px;" class="btn btn-mini">
-                                <i class="fa-solid fa-thumbs-up"></i>
-
-                            </button>
+                            <asp:Label ID="lblId" Text='<%# Eval("Id") %>' runat="server" Visible="False" />
+                            <span class="username"><%#Eval("username")%></span>
+                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/fontawsome/svgs/solid/thumbs-up.svg" Height="40px" Width="40px" Style="float: right" OnClick="ImageButton1_Click" />
+                            <asp:Label ID="Label4" runat="server" Text='<%#Eval("likes")%>' Style="float: right; font-size: 30px; margin-right: 11px; margin-top: 2px;"></asp:Label>
                         </div>
-
                         <div class="image_post">
                             <img src="<%#Eval("post_path")%>" class="center" />
                         </div>
-                        <div class="card-footer">
-                        </div>
                     </div>
                 </ItemTemplate>
-            </asp:Repeater>--%>
-
-
-            <div class="card mb-5">
-                <div class="card-header">
-                    <img src="WebImage/bg1.jpg" class="account-img" />
-                    <span class="username">Username</span>
-                    <button runat="server" style="float: right; margin-top: 10px;" class="btn btn-mini">
-                        <i class="fa-solid fa-thumbs-up"></i>
-
-                    </button>
-                </div>
-
-                <div class="image_post">
-                    <img src="WebImage/back.jpg" class="center" />
-                </div>
-                <div class="card-footer">
-                </div>
-            </div>
-            <div class="card mb-5">
-                <div class="card-header">
-                    <img src="WebImage/bg1.jpg" class="account-img" />
-                    <span class="username">Username</span>
-                </div>
-
-                <div class="image_post">
-                    <img src="WebImage/back.jpg" class="center" />
-                </div>
-                <div class="card-footer">
-                    <i class="fa-solid fa-thumbs-up"></i>
-                </div>
-            </div>
+            </asp:Repeater>
         </div>
         <div class="col-3">
             <div class="fixed-col">
                 <div>
                     <img src="Profile_pic/defualt_user.png" class="account-img" />
-                    <asp:Label ID="myusername" runat="server" Text="" style="color: white;"></asp:Label>
+                    <asp:Label ID="myusername" runat="server" Text="" Style="color: white;"></asp:Label>
                 </div>
                 <div class="mt-4">
                     <h5 style="color: red;">Suggestions for you</h5>
                 </div>
-                <%--<asp:Repeater ID="Repeater2" runat="server">
+                <asp:Repeater ID="Repeater2" runat="server">
                     <ItemTemplate>
                         <tbody>
                             <tr>
                                 <td>
-                                    <div class="row mt-2">
+                                    <div class="row mt-3">
 
-                                        <div class="col-2">
-                                            <img src="WebImage/back.jpg" class="account-img" />
-
-                                        </div>
-                                        <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                                            <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                                        </div>
                                         <div class="col-4">
-                                            <span style="color: dodgerblue;">Follow</span>
+                                            <asp:Image ID="profile_photo" class="account-img" runat="server" ImageUrl='<%#Eval("profile_pic")%>' />
+                                        </div>
+                                        <div class="col-5 overflow-hidden p-2" style="text-overflow: ellipsis;">
+                                            <asp:Label ID="user_name" runat="server" Text='<%#Eval("username")%>' Style="color: white;"></asp:Label>
+
+                                        </div>
+                                        <div class="col-3 p-2">
+                                            <asp:HyperLink ID="follow_act" Style="color: dodgerblue;" runat="server" NavigateUrl='<%#Eval("username", "AddFriend.aspx?username={0}" )%>'>Follow</asp:HyperLink>
                                         </div>
 
                                     </div>
@@ -91,65 +56,8 @@
                         </tbody>
 
                     </ItemTemplate>
-                </asp:Repeater>--%>
-
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
-                <div class="row mt-2">
-
-                    <div class="col-2">
-                        <img src="WebImage/back.jpg" class="account-img" />
-
-                    </div>
-                    <div class="col-6 overflow-hidden" style="text-overflow: ellipsis;">
-                        <span style="color: white;">UsernamedsacdVDFGBDFBDFNfcnbfgngdfGSDFEe</span>
-                    </div>
-                    <div class="col-4">
-                        <span style="color: dodgerblue;">Follow</span>
-                    </div>
-
-                </div>
+                </asp:Repeater>
             </div>
         </div>
-
+    </div>
 </asp:Content>

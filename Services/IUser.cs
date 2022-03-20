@@ -34,9 +34,15 @@ namespace Services
         string DeleteAccount(string username);
         [OperationContract]
         string AddPost(post pst);
+        [OperationContract]
+        string DeletePost(int id);
+        [OperationContract]
+        List<post> ViewPosts(string username);
+        [OperationContract]
+        List<post> ViewMyPosts(string username);
+        [OperationContract]
+        int LikePost(int id);
 
-        //[OperationContract]
-        //DataSet GetSuggestedUser();
     }
 
     [MessageContract]
