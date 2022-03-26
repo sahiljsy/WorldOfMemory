@@ -41,7 +41,7 @@ namespace Services
         [OperationContract]
         List<post> ViewMyPosts(string username);
         [OperationContract]
-        int LikePost(int id);
+        int LikePost(int id,string username);
 
     }
 

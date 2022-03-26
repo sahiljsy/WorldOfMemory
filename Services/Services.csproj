@@ -57,6 +57,9 @@
     </Compile>
     <Compile Include="IPost.cs" />
     <Compile Include="IUser.cs" />
+    <Compile Include="Like.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="post.cs">
       <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>

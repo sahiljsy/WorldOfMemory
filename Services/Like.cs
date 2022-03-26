@@ -14,15 +14,13 @@ namespace Services
     using System.Runtime.Serialization;
 
     [DataContract]
-    public partial class post
+    public partial class Like
     {
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string post_path { get; set; }
+        public int postId { get; set; }
         [DataMember]
-        public string username { get; set; }
-        [DataMember]
-        public int likes { get; set; }
+        public int userId { get; set; }
     }
 }

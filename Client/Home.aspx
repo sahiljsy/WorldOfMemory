@@ -13,7 +13,7 @@
                             <img src="WebImage/bg1.jpg" class="account-img" />
                             <asp:Label ID="lblId" Text='<%# Eval("Id") %>' runat="server" Visible="False" />
                             <span class="username"><%#Eval("username")%></span>
-                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/fontawsome/svgs/solid/thumbs-up.svg" Height="40px" Width="40px" Style="float: right" OnClick="ImageButton1_Click" />
+                            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/fontawsome/svgs/solid/thumbs-up.svg" Height="40px" Width="40px" Style="float: right" OnClick="ImageButton1_Click" ForeColor="Red" />
                             <asp:Label ID="Label4" runat="server" Text='<%#Eval("likes")%>' Style="float: right; font-size: 30px; margin-right: 11px; margin-top: 2px;"></asp:Label>
                         </div>
                         <div class="image_post">

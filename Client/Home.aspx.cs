@@ -57,7 +57,7 @@ namespace Client
             Label ID = (Label)row.FindControl("lblId");
             string id = ID.Text;
             int intid = int.Parse(id);
-            intid = client.LikePost(intid);
+            intid = client.LikePost(intid,user.Value);
             Repeater1.DataSource = client.ViewPosts(user.Value);
             Repeater1.DataBind();
         }

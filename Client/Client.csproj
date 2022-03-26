@@ -1892,6 +1892,7 @@
     <Content Include="fontawsome\svgs\solid\yin-yang.svg" />
     <Content Include="fontawsome\svgs\solid\z.svg" />
     <Content Include="Home.aspx" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Logout.aspx" />
     <Content Include="RemoveFriend.aspx" />
     <Content Include="SignIn.aspx" />
@@ -1900,6 +1901,7 @@
     <Content Include="Web.config" />
     <Content Include="AddPost.aspx" />
     <Content Include="Profile.aspx" />
+    <Content Include="WebForm3.aspx" />
     <Content Include="WebImage\back.jpg" />
     <Content Include="WebImage\bg1.jpg" />
     <Content Include="WebImage\bg2.jpg" />
@@ -1984,6 +1986,13 @@
     </Compile>
     <Compile Include="Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

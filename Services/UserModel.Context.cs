@@ -28,5 +28,6 @@ namespace Services
         public DbSet<Friend> Friends { get; set; }
         public DbSet<post> posts { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Like> Likes { get; set; }
     }
 }

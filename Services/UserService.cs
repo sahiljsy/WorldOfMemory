@@ -61,25 +61,25 @@ namespace Services
             try
             {
                 List<post> post_list = new List<post>();
-                IEnumerable<Friend> friends = db.Friends.Where(f => (f.username == username) ).ToList();
+                IEnumerable<Friend> friends = db.Friends.Where(f => (f.username == username)).ToList();
                 foreach (var f in friends)
                 {
                    IEnumerable<post> pst = db.posts.Where(p => (p.username == f.friend_name));                   
                    foreach (var pt in pst)
                    {
                         post_list.Add(pt);
-                   }
+                   }                 
                 }
-                for (int i = 0, j = post_list.Count - 1; i < j; i++)
+
+
+                IEnumerable<post> psts = db.posts.Where(p => (p.username == username));
+                foreach (var pt in psts)
                 {
-                    post temp = post_list[j];
-                    post_list.RemoveAt(j);
-                    post_list.Insert(i, temp);
+                    post_list.Add(pt);
                 }
-                foreach (var pst in post_list)
-                {
-                    Console.WriteLine(pst.username);
-                }
+                post_list.Sort((x, y) => y.Id.CompareTo(x.Id));
+                //post_list.OrderBy(p => p.Id);
+
                 return post_list;
             }
             catch (Exception e)
@@ -103,16 +103,37 @@ namespace Services
             }
         }
 
-        int IUser.LikePost(int id)
+        int IUser.LikePost(int id,string username)
         {
             try
             {
                 post pt = db.posts.Where(p => p.Id == id).FirstOrDefault<post>();
                 if (pt != null)
                 {
+                    bool already_liked = false;
                     Console.WriteLine("Post Found");
-                    pt.likes = pt.likes + 1;
-                    db.SaveChanges();
+                    var lkes = db.Likes.Where(l => l.postId == id);
+                    Console.WriteLine(username);
+                    User user = db.Users.Where(u => u.username == username).FirstOrDefault();
+                    Console.WriteLine("nOW PRINTING");
+                    Console.WriteLine(user.username);
+                    foreach (Like l in lkes)
+                    {
+                        if(l.userId == user.Id)
+                        {
+                            already_liked = true;
+                        }
+                    }
+                    Console.WriteLine(already_liked);
+                    if (!already_liked)
+                    {
+                        pt.likes = pt.likes + 1;
+                        Like lk = new Like();
+                        lk.postId = id;
+                        lk.userId = user.Id;
+                        db.Likes.Add(lk);
+                        db.SaveChanges();
+                    }                 
                     return pt.likes;
                 }
                 Console.WriteLine("User not Found");

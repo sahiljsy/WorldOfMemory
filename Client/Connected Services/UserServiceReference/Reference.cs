@@ -98,10 +98,10 @@ namespace Client.UserServiceReference {
         System.Threading.Tasks.Task<Services.post[]> ViewMyPostsAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/LikePost", ReplyAction="http://tempuri.org/IUser/LikePostResponse")]
-        int LikePost(int id);
+        int LikePost(int id, string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/LikePost", ReplyAction="http://tempuri.org/IUser/LikePostResponse")]
-        System.Threading.Tasks.Task<int> LikePostAsync(int id);
+        System.Threading.Tasks.Task<int> LikePostAsync(int id, string username);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -315,12 +315,12 @@ namespace Client.UserServiceReference {
             return base.Channel.ViewMyPostsAsync(username);
         }
         
-        public int LikePost(int id) {
-            return base.Channel.LikePost(id);
+        public int LikePost(int id, string username) {
+            return base.Channel.LikePost(id, username);
         }
         
-        public System.Threading.Tasks.Task<int> LikePostAsync(int id) {
-            return base.Channel.LikePostAsync(id);
+        public System.Threading.Tasks.Task<int> LikePostAsync(int id, string username) {
+            return base.Channel.LikePostAsync(id, username);
         }
     }
 }
