@@ -24,6 +24,7 @@ namespace Client
                 {
                     try
                     {
+                        Label2.Visible = false;
                         UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
                         RequestUSer request = new RequestUSer();
                         Services.User u = new Services.User();
@@ -38,11 +39,22 @@ namespace Client
                         name.Text = response.user.name;
                         UserPic.ImageUrl = response.user.profile_pic;
 
+
                         friendList.DataSource = client.GetFriends(user.Value);
                         friendList.DataBind();
-
-                        Repeater2.DataSource = client.ViewMyPosts(user.Value);
-                        Repeater2.DataBind();
+                        Services.post[] pstlist = client.ViewMyPosts(user.Value);
+                        if(pstlist.Length == 0)
+                        {
+                            Repeater2.Visible = false;
+                            Label2.Text = "No Post Available.";
+                            Label2.Visible = true;
+                        }
+                        else
+                        {
+                            Repeater2.DataSource = pstlist;
+                            Repeater2.DataBind();
+                        }
+                        
                     }
                     catch (Exception error)
                     {
@@ -70,12 +82,12 @@ namespace Client
             }
             if (ProfilePic.PostedFile != null && ProfilePic.FileName != null)
             {
-                updated_user.profile_pic = "Profile_pic/" + ProfilePic.FileName;
+                updated_user.profile_pic = "../Profile_pic/" + ProfilePic.FileName;
                 ProfilePic.SaveAs(Server.MapPath("Profile_pic/" + ProfilePic.FileName));
             }
             else
             {
-                updated_user.profile_pic = "Profile_pic/defualt_user.png";
+                updated_user.profile_pic = "../Profile_pic/defualt_user.png";
             }
             try
             {
@@ -113,8 +125,18 @@ namespace Client
             int intid = int.Parse(id);         
             string path = client.DeletePost(intid);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "msg", "alert('Post Deleted Successfully')", true);
-            Repeater2.DataSource = client.ViewMyPosts(user.Value);
-            Repeater2.DataBind();
+            Services.post[] pstlist = client.ViewMyPosts(user.Value);
+            if (pstlist.Length == 0)
+            {
+                Repeater2.Visible = false;
+                Label2.Text = "No Post Available.";
+                Label2.Visible = true;
+            }
+            else
+            {
+                Repeater2.DataSource = pstlist;
+                Repeater2.DataBind();
+            }
         }
     }
 }

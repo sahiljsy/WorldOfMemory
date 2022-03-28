@@ -56,18 +56,22 @@ namespace Services
             }
         }
 
-        List<post> IUser.ViewPosts(string username)
+        List<DisplayPost> IUser.ViewPosts(string username)
         {
             try
             {
-                List<post> post_list = new List<post>();
+                List<DisplayPost> post_list = new List<DisplayPost>();
                 IEnumerable<Friend> friends = db.Friends.Where(f => (f.username == username)).ToList();
                 foreach (var f in friends)
                 {
                    IEnumerable<post> pst = db.posts.Where(p => (p.username == f.friend_name));                   
                    foreach (var pt in pst)
                    {
-                        post_list.Add(pt);
+                        User usr = db.Users.Where(u => (u.username == pt.username)).FirstOrDefault();
+                        DisplayPost displayPost = new DisplayPost();
+                        displayPost.profilepicpath = usr.profile_pic;
+                        displayPost.pst = pt;
+                        post_list.Add(displayPost);
                    }                 
                 }
 
@@ -75,9 +79,13 @@ namespace Services
                 IEnumerable<post> psts = db.posts.Where(p => (p.username == username));
                 foreach (var pt in psts)
                 {
-                    post_list.Add(pt);
+                    User usr = db.Users.Where(u => (u.username == username)).FirstOrDefault();
+                    DisplayPost dp = new DisplayPost();
+                    dp.profilepicpath = usr.profile_pic;
+                    dp.pst = pt;
+                    post_list.Add(dp);
                 }
-                post_list.Sort((x, y) => y.Id.CompareTo(x.Id));
+                post_list.Sort((x, y) => y.pst.Id.CompareTo(x.pst.Id));
                 //post_list.OrderBy(p => p.Id);
 
                 return post_list;
@@ -93,7 +101,8 @@ namespace Services
         {
             try
             {
-                List<post> post_list = db.posts.Where(f => (f.username == username)).ToList();            
+                List<post> post_list = db.posts.Where(f => (f.username == username)).ToList();
+                post_list.Sort((x, y) => y.Id.CompareTo(x.Id));
                 return post_list;
             }
             catch (Exception e)
@@ -192,7 +201,7 @@ namespace Services
                     new_user.username = request.user.username;
                     new_user.password = request.user.password;
                     new_user.email = request.user.email;
-                    new_user.profile_pic = "Profile_pic/back.jpg";
+                    new_user.profile_pic = "../Profile_pic/defualt_user.png";
                     db.Users.Add(new_user);
                     db.SaveChanges();
                     msg.StatusCode = 200;
@@ -410,6 +419,10 @@ namespace Services
                 {
                     var friends = db.Friends.Where(f => f.username == username || f.friend_name == username).ToList();
                     var posts = db.posts.Where(p => p.username == username).ToList();
+                    User usr = db.Users.Where(u => u.username == username).FirstOrDefault();
+
+                    var likes = db.Likes.Where(l => l.userId == usr.Id).ToList();
+
                     foreach (var f in friends)
                     {
                         db.Friends.Remove(f);
@@ -417,6 +430,12 @@ namespace Services
                     foreach (var p in posts)
                     {
                         db.posts.Remove(p);
+                    }
+                    Console.WriteLine("Likes");
+                    foreach (var l in likes)
+                    {
+                        Console.WriteLine(l);
+                        db.Likes.Remove(l);
                     }
                     db.Users.Remove(account);
                     db.SaveChanges();

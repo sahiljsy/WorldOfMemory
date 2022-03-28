@@ -37,7 +37,7 @@ namespace Services
         [OperationContract]
         string DeletePost(int id);
         [OperationContract]
-        List<post> ViewPosts(string username);
+        List<DisplayPost> ViewPosts(string username);
         [OperationContract]
         List<post> ViewMyPosts(string username);
         [OperationContract]
@@ -62,5 +62,14 @@ namespace Services
         [MessageBodyMember]
         public User user { get; set; }
 
+    }
+    [MessageContract]
+    public class DisplayPost
+    {
+        [MessageBodyMember]
+        public string profilepicpath { get; set; }
+
+        [MessageBodyMember]
+        public post pst { get; set; }
     }
 }

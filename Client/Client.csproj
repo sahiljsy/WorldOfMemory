@@ -44,6 +44,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -1892,7 +1895,6 @@
     <Content Include="fontawsome\svgs\solid\yin-yang.svg" />
     <Content Include="fontawsome\svgs\solid\z.svg" />
     <Content Include="Home.aspx" />
-    <Content Include="HtmlPage1.html" />
     <Content Include="Logout.aspx" />
     <Content Include="RemoveFriend.aspx" />
     <Content Include="SignIn.aspx" />
@@ -2055,6 +2057,7 @@
     <Content Include="Site1.Master" />
     <Content Include="Properties\DataSources\Services.User.datasource" />
     <Content Include="Properties\DataSources\Services.post.datasource" />
+    <Content Include="Properties\DataSources\Services.DisplayPost.datasource" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

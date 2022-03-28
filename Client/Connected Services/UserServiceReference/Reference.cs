@@ -86,10 +86,10 @@ namespace Client.UserServiceReference {
         System.Threading.Tasks.Task<string> DeletePostAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewPosts", ReplyAction="http://tempuri.org/IUser/ViewPostsResponse")]
-        Services.post[] ViewPosts(string username);
+        Services.DisplayPost[] ViewPosts(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewPosts", ReplyAction="http://tempuri.org/IUser/ViewPostsResponse")]
-        System.Threading.Tasks.Task<Services.post[]> ViewPostsAsync(string username);
+        System.Threading.Tasks.Task<Services.DisplayPost[]> ViewPostsAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ViewMyPosts", ReplyAction="http://tempuri.org/IUser/ViewMyPostsResponse")]
         Services.post[] ViewMyPosts(string username);
@@ -299,11 +299,11 @@ namespace Client.UserServiceReference {
             return base.Channel.DeletePostAsync(id);
         }
         
-        public Services.post[] ViewPosts(string username) {
+        public Services.DisplayPost[] ViewPosts(string username) {
             return base.Channel.ViewPosts(username);
         }
         
-        public System.Threading.Tasks.Task<Services.post[]> ViewPostsAsync(string username) {
+        public System.Threading.Tasks.Task<Services.DisplayPost[]> ViewPostsAsync(string username) {
             return base.Channel.ViewPostsAsync(username);
         }
         

@@ -29,46 +29,17 @@
         </div>
         <div class="col-7 post-container">
             <div class="row mt-2">
-                <div class="col-4">
-                    <asp:Image ID="Image1" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <div>
-                        <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                        <asp:Label ID="likes" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                    </div>
-
-                </div>
-                <div class="col-4">
-                    <asp:Image ID="Image2" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label1" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
-                <div class="col-4">
-                    <asp:Image ID="Image3" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label2" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
-            </div>
-            <div class="row mt-2">
-                <div class="col-4">
-                    <asp:Image ID="Image4" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <div>
-                        <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                        <asp:Label ID="Label3" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                    </div>
-
-                </div>
-                <div class="col-4">
-                    <asp:Image ID="Image5" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label4" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
-                <div class="col-4">
-                    <asp:Image ID="Image6" runat="server" ImageUrl="WebImage/back.jpg" class="posts" />
-                    <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
-                    <asp:Label ID="Label5" runat="server" Text="0" Style="font-weight: 600"></asp:Label>
-                </div>
+                <asp:Repeater ID="Repeater2" runat="server">
+                    <ItemTemplate>
+                        <div class="col-6">
+                            <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("post_path")%>' class="posts" />
+                            <i class="fa-solid fa-heart" style="color: red; font-size: medium;"></i>
+                            <asp:Label ID="Label1" runat="server" Text='<%#Eval("likes")%>' Style="font-weight: 600"></asp:Label>
+                        </div>
+                    </ItemTemplate>                    
+                </asp:Repeater>
+                <asp:Label ID="Label3" runat="server" Text="label"></asp:Label>
             </div>
         </div>
-
     </div>
 </asp:Content>

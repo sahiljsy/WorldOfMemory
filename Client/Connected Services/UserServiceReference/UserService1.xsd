@@ -27,6 +27,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="post" nillable="true" type="tns:post" />
+  <xs:complexType name="ArrayOfDisplayPost">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DisplayPost" nillable="true" type="tns:DisplayPost" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDisplayPost" nillable="true" type="tns:ArrayOfDisplayPost" />
+  <xs:complexType name="DisplayPost">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="profilepicpath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pst" nillable="true" type="tns:post" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DisplayPost" nillable="true" type="tns:DisplayPost" />
   <xs:complexType name="ArrayOfpost">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="post" nillable="true" type="tns:post" />

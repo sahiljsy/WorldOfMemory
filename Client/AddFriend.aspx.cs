@@ -21,6 +21,7 @@ namespace Client
             }
             try
             {
+                Label3.Visible = false;
                 UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
                 RequestUSer request = new RequestUSer();
                 Services.User u = new Services.User();
@@ -29,6 +30,18 @@ namespace Client
                 UserMessage response = client.GetUser(request);
                 displayUsername.Text = response.user.username;
                 friends.Text = "Friends: "+ response.user.friends;
+                Services.post[] plist = client.ViewMyPosts(friend);
+                if(plist.Length == 0)
+                {
+                    Repeater2.Visible = false;
+                    Label3.Text = "No Post Available.";
+                    Label3.Visible = true;
+                }
+                else
+                {
+                    Repeater2.DataSource = plist;
+                    Repeater2.DataBind();
+                }
             }
             catch (Exception error)
             {
@@ -54,6 +67,18 @@ namespace Client
                     string msg = client.RemoveFriend(user.Value, friend);
                     Follow.Text = "Follow";
                     status.Text = msg;
+                }
+                Services.post[] plist = client.ViewMyPosts(friend);
+                if (plist.Length == 0)
+                {
+                    Repeater2.Visible = false;
+                    Label3.Text = "No Post Available.";
+                    Label3.Visible = true;
+                }
+                else
+                {
+                    Repeater2.DataSource = plist;
+                    Repeater2.DataBind();
                 }
             }
             catch (Exception error)

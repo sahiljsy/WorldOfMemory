@@ -127,7 +127,7 @@
   <xs:element name="ViewPostsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="ViewPostsResult" nillable="true" type="q6:ArrayOfpost" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Services" minOccurs="0" name="ViewPostsResult" nillable="true" type="q6:ArrayOfDisplayPost" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

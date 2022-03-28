@@ -28,15 +28,15 @@ namespace Client
             UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
             post p = new post();
             p.username = user.Value;
+            string[] name = FileUpload1.PostedFile.FileName.Split('.');
+            string strFileName = name[0] + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + name[1];
 
-            p.post_path = "../posts/" + FileUpload1.PostedFile.FileName;
+            p.post_path = "../posts/" + strFileName;
+            Console.WriteLine(p.post_path);
 
-            string strFileName;
             string strFilePath;
             string strFolder;
             strFolder = Server.MapPath("~/posts/");
-            strFileName = FileUpload1.PostedFile.FileName;
-            strFileName = Path.GetFileName(strFileName);
 
             if(FileUpload1.HasFile)
             {

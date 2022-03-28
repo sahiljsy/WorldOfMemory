@@ -8,11 +8,11 @@
         <div class="col-3 profile-intro">
             <div class="fixed-col">
                 <div class="upper">
-                    <img src="WebImage/back.jpg" />
+                    <img src="../WebImage/back.jpg" />
                 </div>
                 <div class="user text-center">
                     <div class="profile">
-                        <asp:Image ID="UserPic" runat="server" ImageUrl="Profile_pic/defualt_user.png" class="rounded-circle" Width="80" />
+                        <asp:Image ID="UserPic" runat="server" ImageUrl="../Profile_pic/defualt_user.png" class="rounded-circle" Width="80" />
                     </div>
                 </div>
                 <div class="mt-5 text-center">
@@ -65,6 +65,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
+                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
             </div>
         </div>
         <div class="col-3 friend-list">
