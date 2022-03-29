@@ -28,7 +28,7 @@ namespace Services
                 db.posts.Add(p);
                 db.SaveChanges();
                 Console.WriteLine("success");
-                string message = " has been Added Successfully.";
+                string message = "Post has been Added Successfully.";
                 return message;
             }
             catch (Exception e)

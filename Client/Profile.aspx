@@ -65,7 +65,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                <center><asp:Label ID="Label2" runat="server" Text="Label" Font-Bold="True" ForeColor="Red" Font-Italic="True" Font-Size="X-Large"></asp:Label></center>
             </div>
         </div>
         <div class="col-3 friend-list">

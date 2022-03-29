@@ -38,7 +38,7 @@
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
-                <asp:Label ID="Label3" runat="server" Text="label"></asp:Label>
+                <center><asp:Label ID="Label3" runat="server" Text="label" Font-Bold="True" Font-Italic="True" Font-Size="X-Large" ForeColor="Red"></asp:Label></center>
             </div>
         </div>
 

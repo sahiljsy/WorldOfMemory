@@ -53,7 +53,7 @@ namespace Client
                 else
                 {
                     FileUpload1.PostedFile.SaveAs(strFilePath);
-                    error.Text = strFileName + client.AddPost(p);
+                    error.Text = client.AddPost(p);
                 }
             }
             else{
