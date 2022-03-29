@@ -28,37 +28,46 @@ namespace Client
             UserServiceReference.IUser client = new UserServiceReference.UserClient("WSHttpBinding_IUser");
             post p = new post();
             p.username = user.Value;
-            string[] name = FileUpload1.PostedFile.FileName.Split('.');
-            string strFileName = name[0] + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + name[1];
-
-            p.post_path = "../posts/" + strFileName;
-            Console.WriteLine(p.post_path);
-
-            string strFilePath;
-            string strFolder;
-            strFolder = Server.MapPath("~/posts/");
-
-            if(FileUpload1.HasFile)
+            if(FileUpload1.PostedFile == null)
             {
-                if(!Directory.Exists(strFolder))
-                {
-                        Directory.CreateDirectory(strFolder);
-                }
-                strFilePath = strFolder + strFileName;
+                error.Text = "No File Uploaded";
+            }
+            else
+            {
+                string[] name = FileUpload1.PostedFile.FileName.Split('.');
+                string strFileName = name[0] + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + name[1];
 
-                if(File.Exists(strFilePath))
+                p.post_path = "../posts/" + strFileName;
+                Console.WriteLine(p.post_path);
+
+                string strFilePath;
+                string strFolder;
+                strFolder = Server.MapPath("~/posts/");
+
+                if (FileUpload1.HasFile)
                 {
-                    error.Text = strFileName + " already exists on the server.";
+                    if (!Directory.Exists(strFolder))
+                    {
+                        Directory.CreateDirectory(strFolder);
+                    }
+                    strFilePath = strFolder + strFileName;
+
+                    if (File.Exists(strFilePath))
+                    {
+                        error.Text = strFileName + " already exists on the server.";
+                    }
+                    else
+                    {
+                        FileUpload1.PostedFile.SaveAs(strFilePath);
+                        error.Text = client.AddPost(p);
+                    }
                 }
                 else
                 {
-                    FileUpload1.PostedFile.SaveAs(strFilePath);
-                    error.Text = client.AddPost(p);
+                    error.Text = "File not found.";
                 }
             }
-            else{
-                error.Text = "File not found.";
-            }
+    
         }
     }
 }
